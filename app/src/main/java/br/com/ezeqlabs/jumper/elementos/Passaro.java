@@ -7,8 +7,8 @@ import br.com.ezeqlabs.jumper.engine.Cores;
 import br.com.ezeqlabs.jumper.engine.Tela;
 
 public class Passaro {
-    private static final int X = 100;
-    private static final int RAIO = 50;
+    public static final int X = 100;
+    public static final int RAIO = 50;
     private static final Paint VERMELHO = Cores.getCorDoPassaro();
     private Tela tela;
 
@@ -35,5 +35,9 @@ public class Passaro {
         if (this.altura > RAIO) {
             this.altura -= 150;
         }
+    }
+
+    public int getAltura(){
+        return this.altura;
     }
 }

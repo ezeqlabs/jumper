@@ -50,4 +50,13 @@ public class Cano {
     public int getPosicao(){
         return  this.posicao;
     }
+
+    public boolean cruzouVerticalmenteCom(Passaro passaro){
+        return passaro.getAltura() - Passaro.RAIO < this.alturaDoCanoSuperior ||
+                passaro.getAltura() + Passaro.RAIO > this.alturaDoCanoInferior;
+    }
+
+    public boolean cruzouHorizontalmenteComPassaro(){
+        return this.posicao - Passaro.X < Passaro.RAIO;
+    }
 }
