@@ -11,6 +11,7 @@ import android.view.View;
 
 import br.com.ezeqlabs.jumper.R;
 import br.com.ezeqlabs.jumper.elementos.Canos;
+import br.com.ezeqlabs.jumper.elementos.GameOver;
 import br.com.ezeqlabs.jumper.elementos.Passaro;
 import br.com.ezeqlabs.jumper.elementos.Pontuacao;
 
@@ -48,6 +49,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
             this.pontuacao.desenhaNo(canvas);
 
             if(this.verificadorDeColisao.temColisao()){
+                new GameOver(this.tela).desenhaNo(canvas);
                 cancela();
             }
 
