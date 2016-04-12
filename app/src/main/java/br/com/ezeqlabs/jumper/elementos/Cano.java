@@ -1,8 +1,12 @@
 package br.com.ezeqlabs.jumper.elementos;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import br.com.ezeqlabs.jumper.R;
 import br.com.ezeqlabs.jumper.engine.Cores;
 import br.com.ezeqlabs.jumper.engine.Tela;
 
@@ -14,12 +18,18 @@ public class Cano {
     private Tela tela;
     private int posicao;
     private int alturaDoCanoSuperior;
+    private Bitmap canoInferior;
+    private Bitmap canoSuperior;
 
-    public Cano(Tela tela, int posicao){
+    public Cano(Context context, Tela tela, int posicao){
         this.tela = tela;
         this.posicao = posicao;
         this.alturaDoCanoInferior = tela.getAltura() - TAMANHO_DO_CANO - valorAleatorio();
         this.alturaDoCanoSuperior = 0 + TAMANHO_DO_CANO + valorAleatorio();
+
+        Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.cano);
+        this.canoInferior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, this.alturaDoCanoInferior, false);
+        this.canoSuperior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, this.alturaDoCanoSuperior, false);
     }
 
     public void desenhaNo(Canvas canvas){
@@ -28,11 +38,11 @@ public class Cano {
     }
 
     private void desenhaCanoSuperiorNo(Canvas canvas){
-        canvas.drawRect(this.posicao, 0, this.posicao + LARGURA_DO_CANO, this.alturaDoCanoSuperior, VERDE);
+        canvas.drawBitmap(this.canoSuperior, this.posicao, 0, null);
     }
 
     private void desenhaCanoInferiorNo(Canvas canvas){
-        canvas.drawRect(this.posicao, this.alturaDoCanoInferior, this.posicao + LARGURA_DO_CANO, this.tela.getAltura(), VERDE);
+        canvas.drawBitmap(this.canoInferior, this.posicao, this.alturaDoCanoInferior, null);
     }
 
     public void move(){

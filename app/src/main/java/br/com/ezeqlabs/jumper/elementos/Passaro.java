@@ -1,8 +1,12 @@
 package br.com.ezeqlabs.jumper.elementos;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import br.com.ezeqlabs.jumper.R;
 import br.com.ezeqlabs.jumper.engine.Cores;
 import br.com.ezeqlabs.jumper.engine.Tela;
 
@@ -11,16 +15,19 @@ public class Passaro {
     public static final int RAIO = 50;
     private static final Paint VERMELHO = Cores.getCorDoPassaro();
     private Tela tela;
+    private final Bitmap passaro;
 
     private int altura;
 
-    public Passaro(Tela tela){
+    public Passaro(Context context, Tela tela){
         this.altura = 100;
         this.tela = tela;
+        Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.passaro);
+        this.passaro = Bitmap.createScaledBitmap(bp, RAIO*2, RAIO*2, false);
     }
 
     public void desenhaNo(Canvas canvas){
-        canvas.drawCircle(X, this.altura, RAIO, VERMELHO);
+        canvas.drawBitmap(this.passaro, X - RAIO, this.altura - RAIO, null);
     }
 
     public void cai(){
