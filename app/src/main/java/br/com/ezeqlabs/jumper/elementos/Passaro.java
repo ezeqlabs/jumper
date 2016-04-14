@@ -10,6 +10,7 @@ import br.com.ezeqlabs.jumper.R;
 import br.com.ezeqlabs.jumper.engine.Cores;
 import br.com.ezeqlabs.jumper.engine.Som;
 import br.com.ezeqlabs.jumper.engine.Tela;
+import br.com.ezeqlabs.jumper.engine.Tempo;
 
 public class Passaro {
     public static final int X = 100;
@@ -18,13 +19,16 @@ public class Passaro {
     private Tela tela;
     private final Bitmap passaro;
     private Som som;
+    private Tempo tempo;
+    public static final int DESLOCAMENTO_DO_PULO = 10;
 
     private int altura;
 
-    public Passaro(Context context, Tela tela, Som som){
+    public Passaro(Context context, Tela tela, Som som, Tempo tempo){
         this.altura = 100;
         this.tela = tela;
         this.som = som;
+        this.tempo = tempo;
         Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.passaro);
         this.passaro = Bitmap.createScaledBitmap(bp, RAIO*2, RAIO*2, false);
     }
@@ -33,18 +37,21 @@ public class Passaro {
         canvas.drawBitmap(this.passaro, X - RAIO, this.altura - RAIO, null);
     }
 
-    public void cai(){
+    public void voa(){
+        double tempo = this.tempo.atual();
+        double novaAltura = -DESLOCAMENTO_DO_PULO + ((10 * (tempo * tempo)) / 2.0); // 10 = gravidade
+
         boolean chegouNoChao = this.altura + RAIO > tela.getAltura();
 
         if(!chegouNoChao) {
-            this.altura += 5;
+            this.altura += novaAltura;
         }
     }
 
     public void pula() {
         if (this.altura > RAIO) {
             this.som.toca(Som.PULO);
-            this.altura -= 150;
+            this.tempo.reinicia();
         }
     }
 
