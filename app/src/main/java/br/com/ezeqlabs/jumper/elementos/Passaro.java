@@ -8,6 +8,7 @@ import android.graphics.Paint;
 
 import br.com.ezeqlabs.jumper.R;
 import br.com.ezeqlabs.jumper.engine.Cores;
+import br.com.ezeqlabs.jumper.engine.Som;
 import br.com.ezeqlabs.jumper.engine.Tela;
 
 public class Passaro {
@@ -16,12 +17,14 @@ public class Passaro {
     private static final Paint VERMELHO = Cores.getCorDoPassaro();
     private Tela tela;
     private final Bitmap passaro;
+    private Som som;
 
     private int altura;
 
-    public Passaro(Context context, Tela tela){
+    public Passaro(Context context, Tela tela, Som som){
         this.altura = 100;
         this.tela = tela;
+        this.som = som;
         Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.passaro);
         this.passaro = Bitmap.createScaledBitmap(bp, RAIO*2, RAIO*2, false);
     }
@@ -40,6 +43,7 @@ public class Passaro {
 
     public void pula() {
         if (this.altura > RAIO) {
+            this.som.toca(Som.PULO);
             this.altura -= 150;
         }
     }
