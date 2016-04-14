@@ -25,7 +25,7 @@ public class Passaro {
     private int altura;
 
     public Passaro(Context context, Tela tela, Som som, Tempo tempo){
-        this.altura = 100;
+        this.altura = 300;
         this.tela = tela;
         this.som = som;
         this.tempo = tempo;
