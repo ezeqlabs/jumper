@@ -19,7 +19,7 @@ public class Canos {
 
     public Canos(Context context, Tela tela, Pontuacao pontuacao){
         this.context = context;
-        int posicao = 200;
+        int posicao = 500;
         this.tela = tela;
         this.pontuacao = pontuacao;
 
