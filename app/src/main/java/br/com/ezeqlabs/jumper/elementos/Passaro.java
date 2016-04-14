@@ -41,11 +41,13 @@ public class Passaro {
         double tempo = this.tempo.atual();
         double novaAltura = -DESLOCAMENTO_DO_PULO + ((10 * (tempo * tempo)) / 2.0); // 10 = gravidade
 
-        boolean chegouNoChao = this.altura + RAIO > tela.getAltura();
-
-        if(!chegouNoChao) {
+        if(!chegouNoChao()) {
             this.altura += novaAltura;
         }
+    }
+
+    public boolean chegouNoChao(){
+        return this.altura + RAIO > tela.getAltura();
     }
 
     public void pula() {

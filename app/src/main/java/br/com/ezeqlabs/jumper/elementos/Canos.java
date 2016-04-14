@@ -61,6 +61,10 @@ public class Canos {
     }
 
     public boolean temColisaoCom(Passaro passaro){
+        if(passaro.chegouNoChao()){
+            return true;
+        }
+        
         for(Cano cano : this.canos){
             if(cano.cruzouHorizontalmenteComPassaro() && cano.cruzouVerticalmenteCom(passaro)){
                 return true;
