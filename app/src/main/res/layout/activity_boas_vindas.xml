@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
+    <Button
         android:id="@+id/menu_principal_jogar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,8 +15,10 @@
         android:shadowDy="3"
         android:shadowRadius="2"
         android:text="Jogar"
-        android:textColor="#FF0000"
+        android:textColor="#c36510"
         android:textSize="35sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:background="#e8ba04"
+        android:padding="16dp" />
 
 </LinearLayout>

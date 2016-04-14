@@ -1,6 +1,7 @@
 package br.com.ezeqlabs.jumper.engine;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -9,6 +10,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 
+import br.com.ezeqlabs.jumper.BoasVindasActivity;
 import br.com.ezeqlabs.jumper.R;
 import br.com.ezeqlabs.jumper.elementos.Canos;
 import br.com.ezeqlabs.jumper.elementos.GameOver;
@@ -85,7 +87,12 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        this.passaro.pula();
+        if(this.estaRodando){
+            this.passaro.pula();
+        }else{
+            Intent boasVindas = new Intent(context, BoasVindasActivity.class);
+            context.startActivity(boasVindas);
+        }
         return false;
     }
 }
