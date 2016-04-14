@@ -23,4 +23,8 @@ public class Pontuacao {
     public void desenhaNo(Canvas canvas){
         canvas.drawText(String.valueOf(this.pontos), 100, 100, BRANCO);
     }
+
+    public int getPontos(){
+        return pontos;
+    }
 }

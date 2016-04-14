@@ -59,7 +59,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
 
             if(this.verificadorDeColisao.temColisao()){
                 this.som.toca(Som.COLISAO);
-                new GameOver(this.tela).desenhaNo(canvas);
+                new GameOver(this.tela, this.pontuacao).desenhaNo(canvas);
                 cancela();
             }
 
