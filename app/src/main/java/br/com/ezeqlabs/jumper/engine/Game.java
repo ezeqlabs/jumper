@@ -2,6 +2,7 @@ package br.com.ezeqlabs.jumper.engine;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -29,12 +30,14 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
     private Context context;
     private Som som;
     private Tempo tempo;
+    private SharedPreferences preferences;
 
-    public Game(Context context) {
+    public Game(Context context, SharedPreferences preferences) {
         super(context);
         this.tela = new Tela(context);
         this.context = context;
         this.som = new Som(context);
+        this.preferences = preferences;
         inicializaElementos();
         setOnTouchListener(this);
     }
@@ -80,7 +83,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
         this.tempo = new Tempo();
         this.background = Bitmap.createScaledBitmap(back, back.getWidth(), tela.getAltura(), false);
         this.passaro = new Passaro(this.context, this.tela, this.som, this.tempo);
-        this.pontuacao = new Pontuacao(this.som);
+        this.pontuacao = new Pontuacao(this.som, this.preferences);
         this.canos = new Canos(this.context, this.tela, this.pontuacao, this.passaro);
         this.verificadorDeColisao = new VerificadorDeColisao(this.passaro, this.canos);
     }
