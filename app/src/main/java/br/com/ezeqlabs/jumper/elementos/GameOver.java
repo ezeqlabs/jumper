@@ -30,7 +30,7 @@ public class GameOver {
         canvas.drawText(gameOver, centralizaTexto(gameOver, GAME_OVER), (this.tela.getAltura() / 2) - 300, GAME_OVER);
         canvas.drawText(pontuacao, centralizaTexto(pontuacao, PONTUACAO), this.tela.getAltura() / 2 - 100, PONTUACAO);
         canvas.drawText(pontuacaoMaxima , centralizaTexto(pontuacaoMaxima, PONTUACAO), this.tela.getAltura() / 2, PONTUACAO);
-        canvas.drawText(novamente, centralizaTexto(novamente, NOVAMENTE), (this.tela.getAltura() / 2) + 70, NOVAMENTE);
+        canvas.drawText(novamente, centralizaTexto(novamente, NOVAMENTE), (this.tela.getAltura() / 2) + 100, NOVAMENTE);
     }
 
     public int centralizaTexto(String texto, Paint corTexto){
