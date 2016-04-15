@@ -11,21 +11,23 @@ import br.com.ezeqlabs.jumper.engine.Tela;
 
 public class Canos {
     private static final int QUANTIDADE_DE_CANOS = 5;
-    private static final int DISTANCIA_ENTRE_CANOS = 250;
+    private static final int DISTANCIA_ENTRE_CANOS = 400;
     private final List<Cano> canos = new ArrayList<Cano>();
     private Tela tela;
     private final Pontuacao pontuacao;
     private Context context;
+    private Passaro passaro;
 
-    public Canos(Context context, Tela tela, Pontuacao pontuacao){
+    public Canos(Context context, Tela tela, Pontuacao pontuacao, Passaro passaro){
         this.context = context;
         int posicao = 500;
         this.tela = tela;
         this.pontuacao = pontuacao;
+        this.passaro = passaro;
 
         for(int i = 0; i < QUANTIDADE_DE_CANOS; i++){
             posicao += DISTANCIA_ENTRE_CANOS;
-            this.canos.add(new Cano(context, tela, posicao));
+            this.canos.add(new Cano(context, tela, posicao, passaro));
         }
     }
 
@@ -46,7 +48,7 @@ public class Canos {
                 this.pontuacao.aumenta();
 
                 iterator.remove();
-                Cano outroCano = new Cano(this.context, this.tela, maiorPosicao() + DISTANCIA_ENTRE_CANOS);
+                Cano outroCano = new Cano(this.context, this.tela, maiorPosicao() + DISTANCIA_ENTRE_CANOS, this.passaro);
                 iterator.add(outroCano);
             }
         }

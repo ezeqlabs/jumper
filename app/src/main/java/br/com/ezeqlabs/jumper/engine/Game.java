@@ -81,7 +81,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
         this.background = Bitmap.createScaledBitmap(back, back.getWidth(), tela.getAltura(), false);
         this.passaro = new Passaro(this.context, this.tela, this.som, this.tempo);
         this.pontuacao = new Pontuacao(this.som);
-        this.canos = new Canos(this.context, this.tela, this.pontuacao);
+        this.canos = new Canos(this.context, this.tela, this.pontuacao, this.passaro);
         this.verificadorDeColisao = new VerificadorDeColisao(this.passaro, this.canos);
     }
 

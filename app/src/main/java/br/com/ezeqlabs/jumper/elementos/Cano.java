@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 
 import br.com.ezeqlabs.jumper.R;
 import br.com.ezeqlabs.jumper.engine.Cores;
@@ -20,12 +21,14 @@ public class Cano {
     private int alturaDoCanoSuperior;
     private Bitmap canoInferior;
     private Bitmap canoSuperior;
+    private int yCanoInferior;
 
-    public Cano(Context context, Tela tela, int posicao){
+    public Cano(Context context, Tela tela, int posicao, Passaro passaro){
         this.tela = tela;
         this.posicao = posicao;
-        this.alturaDoCanoInferior = tela.getAltura() - TAMANHO_DO_CANO - valorAleatorio();
-        this.alturaDoCanoSuperior = 0 + TAMANHO_DO_CANO + valorAleatorio();
+        this.alturaDoCanoInferior = tela.getAltura();
+        this.alturaDoCanoSuperior = 0 + TAMANHO_DO_CANO + valorAleatorio() * multiplicadorAleatorio();
+        this.yCanoInferior = this.alturaDoCanoSuperior + passaro.getTamanhoPassaro() + passaro.DESLOCAMENTO_DO_PULO*30;
 
         Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.cano);
         this.canoInferior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, this.alturaDoCanoInferior, false);
@@ -42,7 +45,7 @@ public class Cano {
     }
 
     private void desenhaCanoInferiorNo(Canvas canvas){
-        canvas.drawBitmap(this.canoInferior, this.posicao, this.alturaDoCanoInferior, null);
+        canvas.drawBitmap(this.canoInferior, this.posicao, this.yCanoInferior, null);
     }
 
     public void move(){
@@ -50,7 +53,11 @@ public class Cano {
     }
 
     private int valorAleatorio(){
-        return (int) (Math.random() * 150);
+        return (int) (Math.random() * 250);
+    }
+
+    private int multiplicadorAleatorio(){
+        return (int) (Math.random() * 7);
     }
 
     public boolean saiuDaTela(){

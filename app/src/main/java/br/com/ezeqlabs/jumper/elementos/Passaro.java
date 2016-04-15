@@ -60,4 +60,8 @@ public class Passaro {
     public int getAltura(){
         return this.altura;
     }
+
+    public int getTamanhoPassaro(){
+        return 2 * RAIO;
+    }
 }
