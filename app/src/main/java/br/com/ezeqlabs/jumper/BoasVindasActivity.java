@@ -27,6 +27,7 @@ public class BoasVindasActivity extends Activity {
             public void onClick(View v) {
                 Intent main = new Intent(BoasVindasActivity.this, MainActivity.class);
                 startActivity(main);
+                finish();
             }
         });
     }

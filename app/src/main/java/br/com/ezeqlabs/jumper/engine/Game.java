@@ -111,8 +111,8 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
     }
 
     private void reiniciaJogo(){
-        Intent boasVindas = new Intent(context, BoasVindasActivity.class);
-        context.startActivity(boasVindas);
+        Intent boasVindas = new Intent(this.context, BoasVindasActivity.class);
+        this.context.startActivity(boasVindas);
     }
 
     private void trataPublicidade(){
