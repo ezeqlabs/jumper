@@ -11,12 +11,17 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+
 import br.com.ezeqlabs.jumper.BoasVindasActivity;
 import br.com.ezeqlabs.jumper.R;
 import br.com.ezeqlabs.jumper.elementos.Canos;
 import br.com.ezeqlabs.jumper.elementos.GameOver;
 import br.com.ezeqlabs.jumper.elementos.Passaro;
 import br.com.ezeqlabs.jumper.elementos.Pontuacao;
+import br.com.ezeqlabs.jumper.helpers.Constantes;
 
 public class Game extends SurfaceView implements Runnable, View.OnTouchListener {
     private boolean estaRodando = true;
@@ -27,12 +32,13 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
     private Canos canos;
     private Pontuacao pontuacao;
     private VerificadorDeColisao verificadorDeColisao;
-    private Context context;
+    private final Context context;
     private Som som;
     private Tempo tempo;
     private SharedPreferences preferences;
+    InterstitialAd mInterstitialAd;
 
-    public Game(Context context, SharedPreferences preferences) {
+    public Game(final Context context, SharedPreferences preferences) {
         super(context);
         this.tela = new Tela(context);
         this.context = context;
@@ -40,6 +46,8 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
         this.preferences = preferences;
         inicializaElementos();
         setOnTouchListener(this);
+        trataPublicidade();
+
     }
 
     @Override
@@ -93,9 +101,34 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
         if(this.estaRodando){
             this.passaro.pula();
         }else{
-            Intent boasVindas = new Intent(context, BoasVindasActivity.class);
-            context.startActivity(boasVindas);
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            }else{
+                reiniciaJogo();
+            }
         }
         return false;
+    }
+
+    private void reiniciaJogo(){
+        Intent boasVindas = new Intent(context, BoasVindasActivity.class);
+        context.startActivity(boasVindas);
+    }
+
+    private void trataPublicidade(){
+        mInterstitialAd = new InterstitialAd(context);
+        mInterstitialAd.setAdUnitId(Constantes.ID_INTERSTITIAL_AD);
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                reiniciaJogo();
+            }
+        });
+        requestNewInterstitial();
+    }
+
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mInterstitialAd.loadAd(adRequest);
     }
 }
