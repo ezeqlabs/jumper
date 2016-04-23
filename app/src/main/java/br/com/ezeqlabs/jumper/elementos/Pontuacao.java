@@ -1,6 +1,5 @@
 package br.com.ezeqlabs.jumper.elementos;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -12,8 +11,8 @@ public class Pontuacao{
     private static final Paint BRANCO = Cores.getCorDaPontuacao();
     public static final String JUMPER_PREF = "JUMPER_PREF";
     private int pontos = 0;
-    private Som som;
-    private SharedPreferences preferences;
+    private final Som som;
+    private final SharedPreferences preferences;
 
     public Pontuacao(Som som, SharedPreferences preferences){
         this.som = som;
@@ -40,9 +39,9 @@ public class Pontuacao{
         return this.preferences.getInt("maximo", 0);
     }
 
-    public void salvaPontuacaoMaxima(int pontos){
+    private void salvaPontuacaoMaxima(int pontos){
         SharedPreferences.Editor editor = this.preferences.edit();
         editor.putInt("maximo", pontos);
-        editor.commit();
+        editor.apply();
     }
 }

@@ -12,8 +12,8 @@ public class GameOver {
     private static final Paint GAME_OVER = Cores.getCorDoGameOver();
     private static final Paint PONTUACAO = Cores.getCorPontuacaoDoGameOver();
     private static final Paint NOVAMENTE = Cores.getCorNovamenteDoGameOver();
-    private Pontuacao pontuacao;
-    private int quantidadePontos;
+    private final Pontuacao pontuacao;
+    private final int quantidadePontos;
 
     public GameOver(Tela tela, Pontuacao pontuacao){
         this.tela = tela;
@@ -33,11 +33,10 @@ public class GameOver {
         canvas.drawText(novamente, centralizaTexto(novamente, NOVAMENTE), (this.tela.getAltura() / 2) + 100, NOVAMENTE);
     }
 
-    public int centralizaTexto(String texto, Paint corTexto){
+    private int centralizaTexto(String texto, Paint corTexto){
         Rect limiteDoTexto = new Rect();
         corTexto.getTextBounds(texto, 0, texto.length(), limiteDoTexto);
-        int centroHorizontal = this.tela.getLargura()/2 - (limiteDoTexto.right - limiteDoTexto.left)/2;
-        return centroHorizontal;
+        return this.tela.getLargura()/2 - (limiteDoTexto.right - limiteDoTexto.left)/2;
     }
 
     private String textoPontuacao(){

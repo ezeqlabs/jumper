@@ -7,7 +7,7 @@ import android.media.SoundPool;
 import br.com.ezeqlabs.jumper.R;
 
 public class Som {
-    private SoundPool soundPool;
+    private final SoundPool soundPool;
     public static int PULO;
     public static int PONTUACAO;
     public static int COLISAO;

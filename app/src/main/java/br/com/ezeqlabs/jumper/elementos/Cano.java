@@ -4,36 +4,27 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.util.Log;
-
-import java.sql.SQLOutput;
 
 import br.com.ezeqlabs.jumper.R;
-import br.com.ezeqlabs.jumper.engine.Cores;
 import br.com.ezeqlabs.jumper.engine.Tela;
 
 public class Cano {
     private static final int TAMANHO_DO_CANO = 250;
     private static final int LARGURA_DO_CANO = 100;
-    private static final Paint VERDE = Cores.getCorDoCano();
-    private int alturaDoCanoInferior;
-    private Tela tela;
     private int posicao;
-    private int alturaDoCanoSuperior;
-    private Bitmap canoInferior;
-    private Bitmap canoSuperior;
-    private int yCanoInferior;
+    private final int alturaDoCanoSuperior;
+    private final Bitmap canoInferior;
+    private final Bitmap canoSuperior;
+    private final int yCanoInferior;
 
     public Cano(Context context, Tela tela, int posicao, Passaro passaro){
-        this.tela = tela;
         this.posicao = posicao;
-        this.alturaDoCanoInferior = tela.getAltura();
-        this.alturaDoCanoSuperior = 0 + TAMANHO_DO_CANO + valorAleatorio() * multiplicadorAleatorio();
-        this.yCanoInferior = this.alturaDoCanoSuperior + passaro.getTamanhoPassaro() + passaro.DESLOCAMENTO_DO_PULO*40;
+        int alturaDoCanoInferior = tela.getAltura();
+        this.alturaDoCanoSuperior = TAMANHO_DO_CANO + valorAleatorio() * multiplicadorAleatorio();
+        this.yCanoInferior = this.alturaDoCanoSuperior + passaro.getTamanhoPassaro() + Passaro.DESLOCAMENTO_DO_PULO*40;
 
         Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.cano);
-        this.canoInferior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, this.alturaDoCanoInferior, false);
+        this.canoInferior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, alturaDoCanoInferior, false);
         this.canoSuperior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, this.alturaDoCanoSuperior, false);
     }
 

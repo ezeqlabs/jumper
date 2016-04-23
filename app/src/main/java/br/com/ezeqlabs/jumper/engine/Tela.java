@@ -6,7 +6,7 @@ import android.view.Display;
 import android.view.WindowManager;
 
 public class Tela {
-    private DisplayMetrics metrics;
+    private final DisplayMetrics metrics;
 
     public Tela(Context context){
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);

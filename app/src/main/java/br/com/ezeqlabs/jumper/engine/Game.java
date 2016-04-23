@@ -1,7 +1,6 @@
 package br.com.ezeqlabs.jumper.engine;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -29,15 +28,15 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
     private final SurfaceHolder holder = getHolder();
     private Passaro passaro;
     private Bitmap background;
-    private Tela tela;
+    private final Tela tela;
     private Canos canos;
     private Pontuacao pontuacao;
     private VerificadorDeColisao verificadorDeColisao;
     private final Activity activity;
-    private Som som;
+    private final Som som;
     private Tempo tempo;
-    private SharedPreferences preferences;
-    InterstitialAd mInterstitialAd;
+    private final SharedPreferences preferences;
+    private InterstitialAd mInterstitialAd;
 
     public Game(final Activity activity, SharedPreferences preferences) {
         super(activity);
