@@ -22,4 +22,8 @@ public class Som {
     public void toca(int som){
         this.soundPool.play(som, 1, 1, 1, 0, 1);
     }
+
+    public void eliminaSom(){
+        this.soundPool.release();
+    }
 }

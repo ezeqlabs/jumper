@@ -7,6 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
 
+import java.sql.SQLOutput;
+
 import br.com.ezeqlabs.jumper.R;
 import br.com.ezeqlabs.jumper.engine.Cores;
 import br.com.ezeqlabs.jumper.engine.Tela;
@@ -69,11 +71,11 @@ public class Cano {
     }
 
     public boolean cruzouVerticalmenteCom(Passaro passaro){
-        return passaro.getAltura() - Passaro.RAIO <= this.alturaDoCanoSuperior ||
-                passaro.getAltura() + Passaro.RAIO >= this.yCanoInferior;
+        return passaro.getAltura() - Passaro.RAIO < this.alturaDoCanoSuperior ||
+                passaro.getAltura() + Passaro.RAIO > this.yCanoInferior;
     }
 
     public boolean cruzouHorizontalmenteComPassaro(){
-        return this.posicao - Passaro.X <= Passaro.RAIO;
+        return this.posicao - Passaro.X < Passaro.RAIO;
     }
 }
