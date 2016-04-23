@@ -28,7 +28,7 @@ public class Cano {
         this.posicao = posicao;
         this.alturaDoCanoInferior = tela.getAltura();
         this.alturaDoCanoSuperior = 0 + TAMANHO_DO_CANO + valorAleatorio() * multiplicadorAleatorio();
-        this.yCanoInferior = this.alturaDoCanoSuperior + passaro.getTamanhoPassaro() + passaro.DESLOCAMENTO_DO_PULO*30;
+        this.yCanoInferior = this.alturaDoCanoSuperior + passaro.getTamanhoPassaro() + passaro.DESLOCAMENTO_DO_PULO*40;
 
         Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.cano);
         this.canoInferior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, this.alturaDoCanoInferior, false);

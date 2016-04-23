@@ -11,7 +11,7 @@ import br.com.ezeqlabs.jumper.engine.Tela;
 
 public class Canos {
     private static final int QUANTIDADE_DE_CANOS = 5;
-    private static final int DISTANCIA_ENTRE_CANOS = 400;
+    private static final int DISTANCIA_ENTRE_CANOS = 500;
     private final List<Cano> canos = new ArrayList<Cano>();
     private Tela tela;
     private final Pontuacao pontuacao;
