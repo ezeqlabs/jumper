@@ -22,7 +22,7 @@ public class BoasVindasActivity extends Activity {
         TextView texto = (TextView) findViewById(R.id.menu_principal_texto);
         Pontuacao pontuacao = new Pontuacao(null, getSharedPreferences(Pontuacao.JUMPER_PREF, 0));
 
-        String textoPontuacao = "Recorde atual \n " + pontuacao.getPontuacaoMaxima() + " canos";
+        String textoPontuacao = "Seu recorde atual \n " + pontuacao.getPontuacaoMaxima() + " canos";
         texto.setText(textoPontuacao);
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
