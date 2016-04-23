@@ -1,5 +1,6 @@
 package br.com.ezeqlabs.jumper.engine;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,17 +33,17 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
     private Canos canos;
     private Pontuacao pontuacao;
     private VerificadorDeColisao verificadorDeColisao;
-    private final Context context;
+    private final Activity activity;
     private Som som;
     private Tempo tempo;
     private SharedPreferences preferences;
     InterstitialAd mInterstitialAd;
 
-    public Game(final Context context, SharedPreferences preferences) {
-        super(context);
-        this.tela = new Tela(context);
-        this.context = context;
-        this.som = new Som(context);
+    public Game(final Activity activity, SharedPreferences preferences) {
+        super(activity);
+        this.tela = new Tela(activity);
+        this.activity = activity;
+        this.som = new Som(activity);
         this.preferences = preferences;
         inicializaElementos();
         setOnTouchListener(this);
@@ -90,9 +91,9 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
         Bitmap back = BitmapFactory.decodeResource(getResources(), R.drawable.background);
         this.tempo = new Tempo();
         this.background = Bitmap.createScaledBitmap(back, back.getWidth(), tela.getAltura(), false);
-        this.passaro = new Passaro(this.context, this.tela, this.som, this.tempo);
+        this.passaro = new Passaro(this.activity, this.tela, this.som, this.tempo);
         this.pontuacao = new Pontuacao(this.som, this.preferences);
-        this.canos = new Canos(this.context, this.tela, this.pontuacao, this.passaro);
+        this.canos = new Canos(this.activity, this.tela, this.pontuacao, this.passaro);
         this.verificadorDeColisao = new VerificadorDeColisao(this.passaro, this.canos);
     }
 
@@ -112,12 +113,13 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
 
     private void reiniciaJogo(){
         this.som.eliminaSom();
-        Intent boasVindas = new Intent(this.context, BoasVindasActivity.class);
-        this.context.startActivity(boasVindas);
+        Intent boasVindas = new Intent(this.activity, BoasVindasActivity.class);
+        this.activity.startActivity(boasVindas);
+        this.activity.finish();
     }
 
     private void trataPublicidade(){
-        mInterstitialAd = new InterstitialAd(context);
+        mInterstitialAd = new InterstitialAd(activity);
         mInterstitialAd.setAdUnitId(Constantes.ID_INTERSTITIAL_AD);
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
