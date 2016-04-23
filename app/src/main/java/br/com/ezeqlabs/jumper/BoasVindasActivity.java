@@ -10,12 +10,19 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import br.com.ezeqlabs.jumper.elementos.Pontuacao;
+
 public class BoasVindasActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boas_vindas);
+
+        TextView texto = (TextView) findViewById(R.id.menu_principal_texto);
+        Pontuacao pontuacao = new Pontuacao(null, getSharedPreferences(Pontuacao.JUMPER_PREF, 0));
+
+        texto.setText("Recorde atual \n " + pontuacao.getPontuacaoMaxima() + " canos");
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();

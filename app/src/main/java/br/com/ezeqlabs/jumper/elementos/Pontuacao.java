@@ -10,7 +10,7 @@ import br.com.ezeqlabs.jumper.engine.Som;
 
 public class Pontuacao{
     private static final Paint BRANCO = Cores.getCorDaPontuacao();
-    private static final String JUMPER_PREF = "JUMPER_PREF";
+    public static final String JUMPER_PREF = "JUMPER_PREF";
     private int pontos = 0;
     private Som som;
     private SharedPreferences preferences;
