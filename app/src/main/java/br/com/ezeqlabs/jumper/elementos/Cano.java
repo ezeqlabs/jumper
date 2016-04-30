@@ -16,16 +16,43 @@ public class Cano {
     private final Bitmap canoInferior;
     private final Bitmap canoSuperior;
     private final int yCanoInferior;
+    private static final int yCanoSuperior = 0;
+    private static final int respiroPassaroCanos = 50;
+    private final Passaro passaro;
+    private final Tela tela;
 
     public Cano(Context context, Tela tela, int posicao, Passaro passaro){
         this.posicao = posicao;
-        int alturaDoCanoInferior = tela.getAltura();
-        this.alturaDoCanoSuperior = TAMANHO_DO_CANO + valorAleatorio() * multiplicadorAleatorio();
-        this.yCanoInferior = this.alturaDoCanoSuperior + passaro.getTamanhoPassaro() + Passaro.DESLOCAMENTO_DO_PULO*40;
+        this.passaro = passaro;
+        this.tela = tela;
+
+        this.alturaDoCanoSuperior = calculaAlturaCanoSuperior();
+        int alturaDoCanoInferior = calculaAlturaCanoInferior();
+        this.yCanoInferior = this.alturaDoCanoSuperior + calculaEspacoEntreCanos();
 
         Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.cano);
-        this.canoInferior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, alturaDoCanoInferior, false);
         this.canoSuperior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, this.alturaDoCanoSuperior, false);
+        this.canoInferior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, alturaDoCanoInferior, false);
+    }
+
+    private int calculaAlturaCanoSuperior(){
+        int alturaCano = TAMANHO_DO_CANO + valorAleatorio();
+        int limite = alturaCano + calculaEspacoEntreCanos();
+
+        if(this.tela.getAltura() <= limite){
+            return calculaAlturaCanoSuperior();
+        }else{
+            return alturaCano;
+        }
+    }
+
+    private int calculaAlturaCanoInferior(){
+        int canoSuperiorComEspaco = this.alturaDoCanoSuperior + calculaEspacoEntreCanos();
+        return this.tela.getAltura() - canoSuperiorComEspaco;
+    }
+
+    private int calculaEspacoEntreCanos(){
+        return this.passaro.getTamanhoPassaro() + Passaro.DESLOCAMENTO_DO_PULO * respiroPassaroCanos;
     }
 
     public void desenhaNo(Canvas canvas){
@@ -34,7 +61,7 @@ public class Cano {
     }
 
     private void desenhaCanoSuperiorNo(Canvas canvas){
-        canvas.drawBitmap(this.canoSuperior, this.posicao, 0, null);
+        canvas.drawBitmap(this.canoSuperior, this.posicao, this.yCanoSuperior, null);
     }
 
     private void desenhaCanoInferiorNo(Canvas canvas){
@@ -46,11 +73,7 @@ public class Cano {
     }
 
     private int valorAleatorio(){
-        return (int) (Math.random() * 250);
-    }
-
-    private int multiplicadorAleatorio(){
-        return (int) (Math.random() * 7);
+        return (int) ((Math.random() * 250) * (Math.random() * 7));
     }
 
     public boolean saiuDaTela(){
