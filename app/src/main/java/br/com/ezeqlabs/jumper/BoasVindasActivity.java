@@ -22,7 +22,7 @@ public class BoasVindasActivity extends Activity {
         TextView texto = (TextView) findViewById(R.id.menu_principal_texto);
         Pontuacao pontuacao = new Pontuacao(null, getSharedPreferences(Pontuacao.JUMPER_PREF, 0));
 
-        String textoPontuacao = "Seu recorde atual \n " + pontuacao.getPontuacaoMaxima() + " canos";
+        String textoPontuacao = getString(R.string.seu_recorde) + "\n" + pontuacao.getPontuacaoMaxima() + " " + getString(R.string.canos);
         texto.setText(textoPontuacao);
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
@@ -30,6 +30,7 @@ public class BoasVindasActivity extends Activity {
         mAdView.loadAd(adRequest);
 
         Button jogar = (Button) findViewById(R.id.menu_principal_jogar);
+        jogar.setText(getString(R.string.botao_jogar));
         jogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

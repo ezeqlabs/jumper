@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Jumper</string>
+
+    <string name="seu_recorde">Seu recorde atual:</string>
+    <string name="botao_jogar">Jogar</string>
+    <string name="canos">canos</string>
 </resources>
