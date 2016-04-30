@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
+import java.util.Random;
+
 import br.com.ezeqlabs.jumper.R;
 import br.com.ezeqlabs.jumper.engine.Tela;
 
@@ -17,7 +19,7 @@ public class Cano {
     private final Bitmap canoSuperior;
     private final int yCanoInferior;
     private static final int yCanoSuperior = 0;
-    private static final int respiroPassaroCanos = 50;
+    private static final int[] respiroPassaroCanos = {25, 35, 50, 65};
     private final Passaro passaro;
     private final Tela tela;
 
@@ -47,12 +49,15 @@ public class Cano {
     }
 
     private int calculaAlturaCanoInferior(){
-        int canoSuperiorComEspaco = this.alturaDoCanoSuperior + calculaEspacoEntreCanos();
-        return this.tela.getAltura() - canoSuperiorComEspaco;
+        return this.tela.getAltura();
     }
 
     private int calculaEspacoEntreCanos(){
-        return this.passaro.getTamanhoPassaro() + Passaro.DESLOCAMENTO_DO_PULO * respiroPassaroCanos;
+        return this.passaro.getTamanhoPassaro() + Passaro.DESLOCAMENTO_DO_PULO * selecionaRespiroPassaro();
+    }
+
+    private int selecionaRespiroPassaro(){
+        return respiroPassaroCanos[new Random().nextInt(4)];
     }
 
     public void desenhaNo(Canvas canvas){
