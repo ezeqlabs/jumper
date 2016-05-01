@@ -48,6 +48,7 @@ public class Canos {
                 this.pontuacao.aumenta();
 
                 iterator.remove();
+                cano.eliminaInutilizados();
                 Cano outroCano = new Cano(this.context, this.tela, maiorPosicao() + DISTANCIA_ENTRE_CANOS, this.passaro);
                 iterator.add(outroCano);
             }

@@ -89,6 +89,11 @@ public class Cano {
         return  this.posicao;
     }
 
+    public void eliminaInutilizados(){
+        this.canoInferior.recycle();
+        this.canoSuperior.recycle();
+    }
+
     public boolean cruzouVerticalmenteCom(Passaro passaro){
         return passaro.getAltura() - Passaro.RAIO < this.alturaDoCanoSuperior ||
                 passaro.getAltura() + Passaro.RAIO > this.yCanoInferior;
