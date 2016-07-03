@@ -94,12 +94,19 @@ public class Cano {
         this.canoSuperior.recycle();
     }
 
-    public boolean cruzouVerticalmenteCom(Passaro passaro){
-        return passaro.getAltura() - Passaro.RAIO < this.alturaDoCanoSuperior ||
-                passaro.getAltura() + Passaro.RAIO > this.yCanoInferior;
-    }
-
     public boolean cruzouHorizontalmenteComPassaro(){
         return this.posicao - Passaro.X < Passaro.RAIO;
+    }
+
+    public boolean cruzouVerticalmenteCom(Passaro passaro){
+        return encostouCanoSuperior(passaro) || encostouCanoInferior(passaro);
+    }
+
+    public boolean encostouCanoSuperior(Passaro passaro){
+        return passaro.getAltura() - Passaro.RAIO < this.alturaDoCanoSuperior;
+    }
+
+    public boolean encostouCanoInferior(Passaro passaro){
+        return passaro.getAltura() + Passaro.RAIO > this.yCanoInferior;
     }
 }
