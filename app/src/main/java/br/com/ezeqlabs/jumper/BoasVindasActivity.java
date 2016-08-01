@@ -11,6 +11,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import br.com.ezeqlabs.jumper.elementos.Pontuacao;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 public class BoasVindasActivity extends Activity {
 
@@ -39,5 +40,13 @@ public class BoasVindasActivity extends Activity {
                 finish();
             }
         });
+
+        new MaterialShowcaseView.Builder(this)
+                .setTarget(jogar)
+                .setDismissText(R.string.tutorial_botao)
+                .setContentText(R.string.tutorial_texto)
+                .setDelay(500)
+                .singleUse("1")
+                .show();
     }
 }

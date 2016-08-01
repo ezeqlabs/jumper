@@ -4,4 +4,7 @@
     <string name="seu_recorde">Seu recorde atual:</string>
     <string name="botao_jogar">Jogar</string>
     <string name="canos">canos</string>
+
+    <string name="tutorial_botao">Boa sorte</string>
+    <string name="tutorial_texto">Bem vindo ao Jumper. Clique na tela para não deixar o passarinho cair.</string>
 </resources>
