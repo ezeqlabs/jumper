@@ -20,17 +20,23 @@ public class BoasVindasActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boas_vindas);
 
+        Button jogar = (Button) findViewById(R.id.menu_principal_jogar);
+
+        montaTextos();
+        trataBotao(jogar);
+        montaAnuncio();
+        montaTutorial(jogar);
+    }
+
+    private void montaTextos(){
         TextView texto = (TextView) findViewById(R.id.menu_principal_texto);
         Pontuacao pontuacao = new Pontuacao(null, getSharedPreferences(Pontuacao.JUMPER_PREF, 0));
 
         String textoPontuacao = getString(R.string.seu_recorde) + "\n" + pontuacao.getPontuacaoMaxima() + " " + getString(R.string.canos);
         texto.setText(textoPontuacao);
+    }
 
-        AdView mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
-        Button jogar = (Button) findViewById(R.id.menu_principal_jogar);
+    private void trataBotao(Button jogar){
         jogar.setText(getString(R.string.botao_jogar));
         jogar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +46,15 @@ public class BoasVindasActivity extends Activity {
                 finish();
             }
         });
+    }
 
+    private void montaAnuncio(){
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+
+    private void montaTutorial(Button jogar){
         new MaterialShowcaseView.Builder(this)
                 .setTarget(jogar)
                 .setDismissText(R.string.tutorial_botao)
