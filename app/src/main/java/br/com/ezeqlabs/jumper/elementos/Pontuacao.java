@@ -1,9 +1,14 @@
 package br.com.ezeqlabs.jumper.elementos;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
+
+import br.com.ezeqlabs.jumper.R;
 import br.com.ezeqlabs.jumper.engine.Cores;
 import br.com.ezeqlabs.jumper.engine.Som;
 
@@ -13,15 +18,46 @@ public class Pontuacao{
     private int pontos = 0;
     private final Som som;
     private final SharedPreferences preferences;
+    private final GoogleApiClient googleApiClient;
 
-    public Pontuacao(Som som, SharedPreferences preferences){
+    public Pontuacao(Som som, SharedPreferences preferences, GoogleApiClient googleApiClient){
         this.som = som;
         this.preferences = preferences;
+        this.googleApiClient = googleApiClient;
     }
 
     public void aumenta(){
         this.som.toca(Som.PONTUACAO);
         this.pontos++;
+        switch (pontos){
+            case 1:
+                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQAQ");
+                break;
+
+            case 5:
+                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQAg");
+                break;
+
+            case 7:
+                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQAw");
+                break;
+
+            case 10:
+                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQBA");
+                break;
+
+            case 15:
+                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQBQ");
+                break;
+
+            case 25:
+                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQBg");
+                break;
+
+            case 50:
+                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQBw");
+                break;
+        }
         if(this.pontos > getPontuacaoMaxima()){
             salvaPontuacaoMaxima(this.pontos);
         }
@@ -43,5 +79,6 @@ public class Pontuacao{
         SharedPreferences.Editor editor = this.preferences.edit();
         editor.putInt("maximo", pontos);
         editor.apply();
+        Games.Leaderboards.submitScore(this.googleApiClient, "CgkI38CiueAUEAIQCA", pontos);
     }
 }
