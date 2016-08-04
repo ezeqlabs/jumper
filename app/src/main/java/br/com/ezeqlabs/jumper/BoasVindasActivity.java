@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -46,7 +47,7 @@ public class BoasVindasActivity extends BaseGameActivity{
             }
         });
 
-        Button conquistas = (Button) findViewById(R.id.show_achievements);
+        ImageView conquistas = (ImageView) findViewById(R.id.show_achievements);
         conquistas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +55,7 @@ public class BoasVindasActivity extends BaseGameActivity{
             }
         });
 
-        Button placar = (Button) findViewById(R.id.show_leaderboard);
+        ImageView placar = (ImageView) findViewById(R.id.show_leaderboard);
         placar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

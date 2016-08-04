@@ -15,7 +15,8 @@
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" />
 
         <Button
             android:id="@+id/sign_out_button"
@@ -24,17 +25,19 @@
             android:text="Logout"
             android:visibility="gone" />
 
-        <Button
+        <ImageView
             android:id="@+id/show_achievements"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Conquistas" />
+            android:src="@drawable/ic_conquistas"
+            android:layout_margin="13dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/show_leaderboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Placar" />
+            android:src="@drawable/ic_placares"
+            android:layout_margin="13dp" />
 
     </LinearLayout>
 
