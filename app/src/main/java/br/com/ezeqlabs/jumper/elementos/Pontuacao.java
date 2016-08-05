@@ -29,35 +29,8 @@ public class Pontuacao{
     public void aumenta(){
         this.som.toca(Som.PONTUACAO);
         this.pontos++;
-        switch (pontos){
-            case 1:
-                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQAQ");
-                break;
+        verificaConquistas(pontos);
 
-            case 5:
-                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQAg");
-                break;
-
-            case 7:
-                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQAw");
-                break;
-
-            case 10:
-                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQBA");
-                break;
-
-            case 15:
-                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQBQ");
-                break;
-
-            case 25:
-                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQBg");
-                break;
-
-            case 50:
-                Games.Achievements.unlock(this.googleApiClient, "CgkI38CiueAUEAIQBw");
-                break;
-        }
         if(this.pontos > getPontuacaoMaxima()){
             salvaPontuacaoMaxima(this.pontos);
         }
@@ -80,5 +53,41 @@ public class Pontuacao{
         editor.putInt("maximo", pontos);
         editor.apply();
         Games.Leaderboards.submitScore(this.googleApiClient, "CgkI38CiueAUEAIQCA", pontos);
+    }
+
+    private void verificaConquistas(int pontos){
+        switch (pontos){
+            case 1:
+                liberaConquista("CgkI38CiueAUEAIQAQ");
+                break;
+
+            case 5:
+                liberaConquista("CgkI38CiueAUEAIQAg");
+                break;
+
+            case 7:
+                liberaConquista("CgkI38CiueAUEAIQAw");
+                break;
+
+            case 10:
+                liberaConquista("CgkI38CiueAUEAIQBA");
+                break;
+
+            case 15:
+                liberaConquista("CgkI38CiueAUEAIQBQ");
+                break;
+
+            case 25:
+                liberaConquista("CgkI38CiueAUEAIQBg");
+                break;
+
+            case 50:
+                liberaConquista("CgkI38CiueAUEAIQBw");
+                break;
+        }
+    }
+
+    private void liberaConquista(String codigo){
+        Games.Achievements.unlock(this.googleApiClient, codigo);
     }
 }

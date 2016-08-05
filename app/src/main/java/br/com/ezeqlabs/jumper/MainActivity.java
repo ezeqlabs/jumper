@@ -25,9 +25,6 @@ public class MainActivity extends Activity {
         FrameLayout container = (FrameLayout) findViewById(R.id.container);
         SharedPreferences preferences = getSharedPreferences(JUMPER_PREF, 0);
 
-        Intent intent = getIntent();
-        GoogleApiClient googleApiClient = (GoogleApiClient) intent.getSerializableExtra("googleApiClient");
-
         this.game = new Game(this, preferences, this.googleApiClient);
         container.addView(this.game);
     }

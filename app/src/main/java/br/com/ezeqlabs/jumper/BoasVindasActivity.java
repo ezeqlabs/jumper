@@ -28,45 +28,11 @@ public class BoasVindasActivity extends BaseGameActivity{
         setContentView(R.layout.activity_boas_vindas);
 
         Button jogar = (Button) findViewById(R.id.menu_principal_jogar);
-
-        SignInButton entrar = (SignInButton) findViewById(R.id.sign_in_button);
-        entrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                beginUserInitiatedSignIn();
-            }
-        });
-
-        ImageView sair = (ImageView) findViewById(R.id.sign_out_button);
-        sair.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signOut();
-                findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-                findViewById(R.id.sign_out_button).setVisibility(View.GONE);
-            }
-        });
-
-        ImageView conquistas = (ImageView) findViewById(R.id.show_achievements);
-        conquistas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 1);
-            }
-        });
-
-        ImageView placar = (ImageView) findViewById(R.id.show_leaderboard);
-        placar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(), "CgkI38CiueAUEAIQCA"), 2);
-            }
-        });
-
         MainActivity.googleApiClient = getApiClient();
 
         montaTextos();
         trataBotao(jogar);
+        trataBotoesGooglePlay();
         montaAnuncio();
         montaTutorial(jogar);
     }
@@ -116,5 +82,41 @@ public class BoasVindasActivity extends BaseGameActivity{
                 .setDelay(500)
                 .singleUse("1")
                 .show();
+    }
+
+    private void trataBotoesGooglePlay(){
+        SignInButton entrar = (SignInButton) findViewById(R.id.sign_in_button);
+        entrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                beginUserInitiatedSignIn();
+            }
+        });
+
+        ImageView sair = (ImageView) findViewById(R.id.sign_out_button);
+        sair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+                findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+                findViewById(R.id.sign_out_button).setVisibility(View.GONE);
+            }
+        });
+
+        ImageView conquistas = (ImageView) findViewById(R.id.show_achievements);
+        conquistas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 1);
+            }
+        });
+
+        ImageView placar = (ImageView) findViewById(R.id.show_leaderboard);
+        placar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(), "CgkI38CiueAUEAIQCA"), 2);
+            }
+        });
     }
 }
