@@ -14,6 +14,7 @@ import android.view.View;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import br.com.ezeqlabs.jumper.BoasVindasActivity;
 import br.com.ezeqlabs.jumper.R;
@@ -37,13 +38,15 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
     private Tempo tempo;
     private final SharedPreferences preferences;
     private InterstitialAd mInterstitialAd;
+    private final GoogleApiClient googleApiClient;
 
-    public Game(final Activity activity, SharedPreferences preferences) {
+    public Game(final Activity activity, SharedPreferences preferences, GoogleApiClient googleApiClient) {
         super(activity);
         this.tela = new Tela(activity);
         this.activity = activity;
         this.som = new Som(activity);
         this.preferences = preferences;
+        this.googleApiClient = googleApiClient;
         inicializaElementos();
         setOnTouchListener(this);
         trataPublicidade();
@@ -91,7 +94,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
         this.tempo = new Tempo();
         this.background = Bitmap.createScaledBitmap(back, back.getWidth(), tela.getAltura(), false);
         this.passaro = new Passaro(this.activity, this.tela, this.som, this.tempo);
-        this.pontuacao = new Pontuacao(this.som, this.preferences);
+        this.pontuacao = new Pontuacao(this.som, this.preferences, this.googleApiClient);
         this.canos = new Canos(this.activity, this.tela, this.pontuacao, this.passaro);
         this.verificadorDeColisao = new VerificadorDeColisao(this.passaro, this.canos);
     }

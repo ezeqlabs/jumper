@@ -6,6 +6,44 @@
     android:background="@drawable/background">
 
     <LinearLayout
+        android:id="@+id/sign_in_buttons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" />
+
+        <ImageView
+            android:id="@+id/sign_out_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_deslogar"
+            android:visibility="gone"
+            android:layout_margin="13dp" />
+
+        <ImageView
+            android:id="@+id/show_achievements"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_conquistas"
+            android:layout_margin="13dp" />
+
+        <ImageView
+            android:id="@+id/show_leaderboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_placares"
+            android:layout_margin="13dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"

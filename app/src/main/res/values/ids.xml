@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_id">713084674143</string>
+
+    <!-- CONQUISTAS -->
+    <string name="conquista_primeiro_cano">CgkI38CiueAUEAIQAQ</string>
+    <string name="conquista_5_canos">CgkI38CiueAUEAIQAg</string>
+    <string name="conquista_canos_primos">CgkI38CiueAUEAIQAw</string>
+    <string name="conquista_10_canos">CgkI38CiueAUEAIQBA</string>
+    <string name="conquista_ficando_bom">CgkI38CiueAUEAIQBQ</string>
+    <string name="conquista_25_canos">CgkI38CiueAUEAIQBg</string>
+    <string name="conquista_50_canos">CgkI38CiueAUEAIQBw</string>
+
+    <!-- PLACARES -->
+    <string name="placar_mais_canos">CgkI38CiueAUEAIQCA</string>
+</resources>
