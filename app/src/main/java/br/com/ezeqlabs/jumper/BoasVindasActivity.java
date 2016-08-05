@@ -37,7 +37,7 @@ public class BoasVindasActivity extends BaseGameActivity{
             }
         });
 
-        Button sair = (Button) findViewById(R.id.sign_out_button);
+        ImageView sair = (ImageView) findViewById(R.id.sign_out_button);
         sair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

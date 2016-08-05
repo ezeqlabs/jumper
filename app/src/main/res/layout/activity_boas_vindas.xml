@@ -18,12 +18,13 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/sign_out_button"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Logout"
-            android:visibility="gone" />
+            android:src="@drawable/ic_deslogar"
+            android:visibility="gone"
+            android:layout_margin="13dp" />
 
         <ImageView
             android:id="@+id/show_achievements"
