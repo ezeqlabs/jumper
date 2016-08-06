@@ -52,7 +52,9 @@ public class Pontuacao{
         SharedPreferences.Editor editor = this.preferences.edit();
         editor.putInt("maximo", pontos);
         editor.apply();
-        Games.Leaderboards.submitScore(this.googleApiClient, "CgkI38CiueAUEAIQCA", pontos);
+        if( temGoogleApiConectada() ) {
+            Games.Leaderboards.submitScore(this.googleApiClient, "CgkI38CiueAUEAIQCA", pontos);
+        }
     }
 
     private void verificaConquistas(int pontos){
@@ -88,6 +90,12 @@ public class Pontuacao{
     }
 
     private void liberaConquista(String codigo){
-        Games.Achievements.unlock(this.googleApiClient, codigo);
+        if(temGoogleApiConectada()) {
+            Games.Achievements.unlock(this.googleApiClient, codigo);
+        }
+    }
+
+    private boolean temGoogleApiConectada(){
+        return this.googleApiClient.isConnected();
     }
 }
