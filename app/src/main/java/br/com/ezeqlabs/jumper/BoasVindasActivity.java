@@ -28,7 +28,6 @@ public class BoasVindasActivity extends BaseGameActivity{
         setContentView(R.layout.activity_boas_vindas);
 
         Button jogar = (Button) findViewById(R.id.menu_principal_jogar);
-        MainActivity.googleApiClient = getApiClient();
 
         montaTextos();
         trataBotao(jogar);
