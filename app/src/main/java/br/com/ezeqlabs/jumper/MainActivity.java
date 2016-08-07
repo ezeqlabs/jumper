@@ -12,21 +12,22 @@ import com.google.example.games.basegameutils.BaseGameActivity;
 
 import br.com.ezeqlabs.jumper.engine.Game;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseGameActivity {
     private Game game;
     private static final String JUMPER_PREF = "JUMPER_PREF";
-    public static GoogleApiClient googleApiClient = null;
+    private FrameLayout container;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FrameLayout container = (FrameLayout) findViewById(R.id.container);
-        SharedPreferences preferences = getSharedPreferences(JUMPER_PREF, 0);
+        this.container = (FrameLayout) findViewById(R.id.container);
+        this.preferences = getSharedPreferences(JUMPER_PREF, 0);
 
-        this.game = new Game(this, preferences, this.googleApiClient);
-        container.addView(this.game);
+        this.game = new Game(this, this.preferences, getApiClient());
+        this.container.addView(this.game);
     }
 
     @Override
@@ -35,10 +36,18 @@ public class MainActivity extends Activity {
         this.game.cancela();
     }
 
-    @Override
-    protected void onResume(){
-        super.onResume();
+    private void iniciaJogo(){
         this.game.inicia();
         new Thread(this.game).start();
+    }
+
+    @Override
+    public void onSignInFailed() {
+        iniciaJogo();
+    }
+
+    @Override
+    public void onSignInSucceeded() {
+        iniciaJogo();
     }
 }
