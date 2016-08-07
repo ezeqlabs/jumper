@@ -21,13 +21,14 @@ import br.com.ezeqlabs.jumper.elementos.Pontuacao;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 public class BoasVindasActivity extends BaseGameActivity{
-
+    private Pontuacao pontuacao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boas_vindas);
 
         Button jogar = (Button) findViewById(R.id.menu_principal_jogar);
+        this.pontuacao = new Pontuacao(null, getSharedPreferences(Pontuacao.JUMPER_PREF, 0), getApiClient());
 
         montaTextos();
         trataBotao(jogar);
@@ -49,9 +50,8 @@ public class BoasVindasActivity extends BaseGameActivity{
 
     private void montaTextos(){
         TextView texto = (TextView) findViewById(R.id.menu_principal_texto);
-        Pontuacao pontuacao = new Pontuacao(null, getSharedPreferences(Pontuacao.JUMPER_PREF, 0), getApiClient());
 
-        String textoPontuacao = getString(R.string.seu_recorde) + "\n" + pontuacao.getPontuacaoMaxima() + " " + getString(R.string.canos);
+        String textoPontuacao = getString(R.string.seu_recorde) + "\n" + this.pontuacao.getPontuacaoMaxima() + " " + getString(R.string.canos);
         texto.setText(textoPontuacao);
     }
 
