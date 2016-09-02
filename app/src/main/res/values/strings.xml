@@ -7,4 +7,7 @@
 
     <string name="tutorial_botao">Boa sorte</string>
     <string name="tutorial_texto">Bem vindo ao Jumper. Clique na tela para não deixar o passarinho cair.</string>
+
+    <string name="erro_conquistas">Entre com a sua conta no Google Play Games para ver as conquistas</string>
+    <string name="erro_placares">Entre com a sua conta no Google Play Games para ver o placar</string>
 </resources>

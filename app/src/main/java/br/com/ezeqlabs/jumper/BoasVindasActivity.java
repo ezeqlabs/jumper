@@ -1,6 +1,7 @@
 package br.com.ezeqlabs.jumper;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -22,6 +24,7 @@ import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 public class BoasVindasActivity extends BaseGameActivity{
     private Pontuacao pontuacao;
+    private Context that;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,7 @@ public class BoasVindasActivity extends BaseGameActivity{
 
         Button jogar = (Button) findViewById(R.id.menu_principal_jogar);
         this.pontuacao = new Pontuacao(null, getSharedPreferences(Pontuacao.JUMPER_PREF, 0), getApiClient());
+        that = this;
 
         montaTextos();
         trataBotao(jogar);
@@ -106,7 +110,11 @@ public class BoasVindasActivity extends BaseGameActivity{
         conquistas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 1);
+                if( isSignedIn() ){
+                    startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 1);
+                }else{
+                    Toast.makeText(that, getString(R.string.erro_conquistas), Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -114,7 +122,12 @@ public class BoasVindasActivity extends BaseGameActivity{
         placar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(), "CgkI38CiueAUEAIQCA"), 2);
+                if( isSignedIn() ){
+                    startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(), "CgkI38CiueAUEAIQCA"), 2);
+                }else{
+                    Toast.makeText(that, getString(R.string.erro_placares), Toast.LENGTH_LONG).show();
+                }
+
             }
         });
     }
