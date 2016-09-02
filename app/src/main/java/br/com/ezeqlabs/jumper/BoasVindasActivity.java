@@ -55,12 +55,12 @@ public class BoasVindasActivity extends BaseGameActivity{
     private void montaTextos(){
         TextView texto = (TextView) findViewById(R.id.menu_principal_texto);
 
-        String textoPontuacao = getString(R.string.seu_recorde) + "\n" + this.pontuacao.getPontuacaoMaxima() + " " + getString(R.string.canos);
+        String textoPontuacao = getString(R.string.seu_recorde, this.pontuacao.getPontuacaoMaxima());
         texto.setText(textoPontuacao);
     }
 
     private void trataBotao(Button jogar){
-        jogar.setText(getString(R.string.botao_jogar));
+        jogar.setText(getString(R.string.botao_jogar).toUpperCase());
         jogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +113,7 @@ public class BoasVindasActivity extends BaseGameActivity{
                 if( isSignedIn() ){
                     startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 1);
                 }else{
-                    Toast.makeText(that, getString(R.string.erro_conquistas), Toast.LENGTH_LONG).show();
+                    Toast.makeText(that, getString(R.string.erro_play_deslogado, getString(R.string.conquistas)), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -125,7 +125,7 @@ public class BoasVindasActivity extends BaseGameActivity{
                 if( isSignedIn() ){
                     startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(), "CgkI38CiueAUEAIQCA"), 2);
                 }else{
-                    Toast.makeText(that, getString(R.string.erro_placares), Toast.LENGTH_LONG).show();
+                    Toast.makeText(that, getString(R.string.erro_play_deslogado, getString(R.string.placar)), Toast.LENGTH_LONG).show();
                 }
 
             }
