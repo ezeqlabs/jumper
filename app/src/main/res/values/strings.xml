@@ -1,10 +1,14 @@
 <resources>
     <string name="app_name">Jumper</string>
 
-    <string name="seu_recorde">Seu recorde atual:</string>
+    <string name="seu_recorde">Seu recorde atual: \n %1$d canos</string>
     <string name="botao_jogar">Jogar</string>
     <string name="canos">canos</string>
 
-    <string name="tutorial_botao">Boa sorte</string>
-    <string name="tutorial_texto">Bem vindo ao Jumper. Clique na tela para não deixar o passarinho cair.</string>
+    <string name="tutorial_botao">Entendi!</string>
+    <string name="tutorial_texto">Bem vindo ao Jumper. Clique na tela para não deixar o passarinho cair. Boa sorte =]</string>
+
+    <string name="erro_play_deslogado">Entre com a sua conta no Google Play Games para ver %1$s</string>
+    <string name="conquistas">as conquistas</string>
+    <string name="placar">o placar</string>
 </resources>
