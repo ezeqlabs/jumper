@@ -74,7 +74,7 @@ public class Cano {
     }
 
     public void move(){
-        this.posicao -= 5;
+        this.posicao -= 5.1f;
     }
 
     private int valorAleatorio(){
