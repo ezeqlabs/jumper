@@ -28,18 +28,18 @@ public class BoasVindasActivity extends BaseGameActivity{
     private Pontuacao pontuacao;
     private Context that;
     private SharedPreferences sharedPreferences;
+    private Button jogar;
+    private TextView moedas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boas_vindas);
 
-        this.sharedPreferences = getSharedPreferences(Constantes.JUMPER_PREF, 0);
 
-        Button jogar = (Button) findViewById(R.id.menu_principal_jogar);
-        this.pontuacao = new Pontuacao(null, this.sharedPreferences, getApiClient());
-        that = this;
 
+        inicializaElementos();
+        exibeMoedas();
         reduzQuantidadeDeConexao();
         montaTextos();
         trataBotao(jogar);
@@ -57,6 +57,18 @@ public class BoasVindasActivity extends BaseGameActivity{
     public void onSignInFailed() {
         findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
         findViewById(R.id.sign_out_button).setVisibility(View.GONE);
+    }
+
+    private void inicializaElementos(){
+        this.sharedPreferences = getSharedPreferences(Constantes.JUMPER_PREF, 0);
+        this.jogar = (Button) findViewById(R.id.menu_principal_jogar);
+        this.moedas = (TextView) findViewById(R.id.boas_vindas_moedas);
+        this.pontuacao = new Pontuacao(this, null, this.sharedPreferences, getApiClient());
+        this.that = this;
+    }
+
+    private void exibeMoedas(){
+        this.moedas.setText( ""+this.sharedPreferences.getInt("moedas", 0) );
     }
 
     private void reduzQuantidadeDeConexao(){
