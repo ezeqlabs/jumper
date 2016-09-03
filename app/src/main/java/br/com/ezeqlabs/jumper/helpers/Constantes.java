@@ -14,4 +14,8 @@ public class Constantes {
     public static final String CONQUISTA_50 = "CgkI38CiueAUEAIQBw";
 
     public static final String JUMPER_PREF = "JUMPER_PREF";
+    public static final String PREFS_MAXIMA_PONTUACAO = "maximo";
+    public static final String PREFS_MOEDAS = "moedas";
+    public static final String PREFS_MOEDAS_TOTAIS = "moedasTotais";
+    public static final String PREFS_TENTATIVAS_CONECTAR = "tentivas_conectar";
 }

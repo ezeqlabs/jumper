@@ -68,15 +68,15 @@ public class BoasVindasActivity extends BaseGameActivity{
     }
 
     private void exibeMoedas(){
-        this.moedas.setText( ""+this.sharedPreferences.getInt("moedas", 0) );
+        this.moedas.setText( ""+this.sharedPreferences.getInt(Constantes.PREFS_MOEDAS, 0) );
     }
 
     private void reduzQuantidadeDeConexao(){
-        if( this.sharedPreferences.getInt("tentivas_conectar", 1) == 0 ){
+        if( this.sharedPreferences.getInt(Constantes.PREFS_TENTATIVAS_CONECTAR, 1) == 0 ){
             getGameHelper().setMaxAutoSignInAttempts(0);
         }else{
             SharedPreferences.Editor editor = this.sharedPreferences.edit();
-            editor.putInt("tentivas_conectar", 0);
+            editor.putInt(Constantes.PREFS_TENTATIVAS_CONECTAR, 0);
             editor.commit();
         }
     }

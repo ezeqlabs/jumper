@@ -29,7 +29,6 @@ public class Pontuacao{
     private final Som som;
     private final SharedPreferences preferences;
     private final GoogleApiClient googleApiClient;
-    private Set<String> conquistasGanhas = new HashSet<String>();
     private Bitmap moeda;
     private Context context;
 
@@ -64,13 +63,12 @@ public class Pontuacao{
     }
 
     public int getPontuacaoMaxima(){
-        return this.preferences.getInt("maximo", 0);
+        return this.preferences.getInt(Constantes.PREFS_MAXIMA_PONTUACAO, 0);
     }
 
     private void salvaPontuacaoMaxima(int pontos){
         SharedPreferences.Editor editor = this.preferences.edit();
-        editor.putInt("maximo", pontos);
-        editor.putStringSet("conquistas", conquistasGanhas);
+        editor.putInt(Constantes.PREFS_MAXIMA_PONTUACAO, pontos);
         editor.apply();
         if( temGoogleApiConectada() ) {
             Games.Leaderboards.submitScore(this.googleApiClient, Constantes.PLACAR, pontos);
@@ -78,15 +76,15 @@ public class Pontuacao{
     }
 
     private void aumentaMoedas(){
-        int moedas = this.preferences.getInt("moedas", 0);
-        int moedasTotais = this.preferences.getInt("moedasTotais", 0);
+        int moedas = this.preferences.getInt(Constantes.PREFS_MOEDAS, 0);
+        int moedasTotais = this.preferences.getInt(Constantes.PREFS_MOEDAS_TOTAIS, 0);
         SharedPreferences.Editor editor = this.preferences.edit();
 
         moedas += 1;
         moedasTotais += 1;
 
-        editor.putInt("moedas", moedas);
-        editor.putInt("moedasTotais", moedasTotais);
+        editor.putInt(Constantes.PREFS_MOEDAS, moedas);
+        editor.putInt(Constantes.PREFS_MOEDAS_TOTAIS, moedasTotais);
         editor.apply();
     }
 
@@ -97,7 +95,7 @@ public class Pontuacao{
         display.getSize(size);
 
         canvas.drawBitmap(this.moeda, size.x - 250, 42, null);
-        canvas.drawText(String.valueOf(this.preferences.getInt("moedas", 0)), size.x - 180, 100, BRANCO);
+        canvas.drawText(String.valueOf(this.preferences.getInt(Constantes.PREFS_MOEDAS, 0)), size.x - 180, 100, BRANCO);
     }
 
     private void verificaConquistas(int pontos){
