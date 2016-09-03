@@ -3,6 +3,7 @@ package br.com.ezeqlabs.jumper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -26,15 +27,20 @@ import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 public class BoasVindasActivity extends BaseGameActivity{
     private Pontuacao pontuacao;
     private Context that;
+    private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boas_vindas);
 
+        this.sharedPreferences = getSharedPreferences(Constantes.JUMPER_PREF, 0);
+
         Button jogar = (Button) findViewById(R.id.menu_principal_jogar);
-        this.pontuacao = new Pontuacao(null, getSharedPreferences(Pontuacao.JUMPER_PREF, 0), getApiClient());
+        this.pontuacao = new Pontuacao(null, this.sharedPreferences, getApiClient());
         that = this;
 
+        reduzQuantidadeDeConexao();
         montaTextos();
         trataBotao(jogar);
         trataBotoesGooglePlay();
@@ -51,6 +57,16 @@ public class BoasVindasActivity extends BaseGameActivity{
     public void onSignInFailed() {
         findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
         findViewById(R.id.sign_out_button).setVisibility(View.GONE);
+    }
+
+    private void reduzQuantidadeDeConexao(){
+        if( this.sharedPreferences.getInt("tentivas_conectar", 1) == 0 ){
+            getGameHelper().setMaxAutoSignInAttempts(0);
+        }else{
+            SharedPreferences.Editor editor = this.sharedPreferences.edit();
+            editor.putInt("tentivas_conectar", 0);
+            editor.commit();
+        }
     }
 
     private void montaTextos(){

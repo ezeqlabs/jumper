@@ -12,4 +12,6 @@ public class Constantes {
     public static final String CONQUISTA_15 = "CgkI38CiueAUEAIQBQ";
     public static final String CONQUISTA_25 = "CgkI38CiueAUEAIQBg";
     public static final String CONQUISTA_50 = "CgkI38CiueAUEAIQBw";
+
+    public static final String JUMPER_PREF = "JUMPER_PREF";
 }

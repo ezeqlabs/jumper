@@ -25,6 +25,8 @@ public class MainActivity extends BaseGameActivity {
 
         this.container = (FrameLayout) findViewById(R.id.container);
         this.preferences = getSharedPreferences(JUMPER_PREF, 0);
+        
+        getGameHelper().setMaxAutoSignInAttempts(0);
 
         this.game = new Game(this, this.preferences, getApiClient());
         this.container.addView(this.game);

@@ -19,7 +19,6 @@ import br.com.ezeqlabs.jumper.helpers.Constantes;
 
 public class Pontuacao{
     private static final Paint BRANCO = Cores.getCorDaPontuacao();
-    public static final String JUMPER_PREF = "JUMPER_PREF";
     private int pontos = 0;
     private final Som som;
     private final SharedPreferences preferences;
