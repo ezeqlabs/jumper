@@ -15,6 +15,7 @@ import java.util.Set;
 import br.com.ezeqlabs.jumper.R;
 import br.com.ezeqlabs.jumper.engine.Cores;
 import br.com.ezeqlabs.jumper.engine.Som;
+import br.com.ezeqlabs.jumper.helpers.Constantes;
 
 public class Pontuacao{
     private static final Paint BRANCO = Cores.getCorDaPontuacao();
@@ -59,38 +60,38 @@ public class Pontuacao{
         editor.putStringSet("conquistas", conquistasGanhas);
         editor.apply();
         if( temGoogleApiConectada() ) {
-            Games.Leaderboards.submitScore(this.googleApiClient, "CgkI38CiueAUEAIQCA", pontos);
+            Games.Leaderboards.submitScore(this.googleApiClient, Constantes.PLACAR, pontos);
         }
     }
 
     private void verificaConquistas(int pontos){
         switch (pontos){
             case 1:
-                liberaConquista("CgkI38CiueAUEAIQAQ", 0);
+                liberaConquista(Constantes.CONQUISTA_1, 0);
                 break;
 
             case 5:
-                liberaConquista("CgkI38CiueAUEAIQAg", 2);
+                liberaConquista(Constantes.CONQUISTA_5, 2);
                 break;
 
             case 7:
-                liberaConquista("CgkI38CiueAUEAIQAw", 3);
+                liberaConquista(Constantes.CONQUISTA_7, 3);
                 break;
 
             case 10:
-                liberaConquista("CgkI38CiueAUEAIQBA", 4);
+                liberaConquista(Constantes.CONQUISTA_10, 4);
                 break;
 
             case 15:
-                liberaConquista("CgkI38CiueAUEAIQBQ", 5);
+                liberaConquista(Constantes.CONQUISTA_15, 5);
                 break;
 
             case 25:
-                liberaConquista("CgkI38CiueAUEAIQBg", 6);
+                liberaConquista(Constantes.CONQUISTA_25, 6);
                 break;
 
             case 50:
-                liberaConquista("CgkI38CiueAUEAIQBw", 7);
+                liberaConquista(Constantes.CONQUISTA_50, 7);
                 break;
         }
     }

@@ -20,6 +20,7 @@ import com.google.example.games.basegameutils.BaseGameActivity;
 import java.io.Serializable;
 
 import br.com.ezeqlabs.jumper.elementos.Pontuacao;
+import br.com.ezeqlabs.jumper.helpers.Constantes;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 public class BoasVindasActivity extends BaseGameActivity{
@@ -123,7 +124,7 @@ public class BoasVindasActivity extends BaseGameActivity{
             @Override
             public void onClick(View v) {
                 if( isSignedIn() ){
-                    startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(), "CgkI38CiueAUEAIQCA"), 2);
+                    startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(), Constantes.PLACAR), 2);
                 }else{
                     Toast.makeText(that, getString(R.string.erro_play_deslogado, getString(R.string.placar)), Toast.LENGTH_SHORT).show();
                 }
