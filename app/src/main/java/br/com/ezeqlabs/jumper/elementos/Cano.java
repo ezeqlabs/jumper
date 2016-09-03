@@ -32,7 +32,9 @@ public class Cano {
         int alturaDoCanoInferior = calculaAlturaCanoInferior();
         this.yCanoInferior = this.alturaDoCanoSuperior + calculaEspacoEntreCanos();
 
-        Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.cano);
+        int[] coresCanos = {R.drawable.cano, R.drawable.cano_azul, R.drawable.cano_roxo, R.drawable.cano_verde, R.drawable.cano_vermelho};
+
+        Bitmap bp = BitmapFactory.decodeResource(context.getResources(), coresCanos[0]);
         this.canoSuperior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, this.alturaDoCanoSuperior, false);
         this.canoInferior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, alturaDoCanoInferior, false);
     }
