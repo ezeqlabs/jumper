@@ -113,7 +113,7 @@ public class BoasVindasActivity extends BaseGameActivity{
                 if( isSignedIn() ){
                     startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 1);
                 }else{
-                    Toast.makeText(that, getString(R.string.erro_play_deslogado, getString(R.string.conquistas)), Toast.LENGTH_LONG).show();
+                    Toast.makeText(that, getString(R.string.erro_play_deslogado, getString(R.string.conquistas)), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -125,7 +125,7 @@ public class BoasVindasActivity extends BaseGameActivity{
                 if( isSignedIn() ){
                     startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(), "CgkI38CiueAUEAIQCA"), 2);
                 }else{
-                    Toast.makeText(that, getString(R.string.erro_play_deslogado, getString(R.string.placar)), Toast.LENGTH_LONG).show();
+                    Toast.makeText(that, getString(R.string.erro_play_deslogado, getString(R.string.placar)), Toast.LENGTH_SHORT).show();
                 }
 
             }
