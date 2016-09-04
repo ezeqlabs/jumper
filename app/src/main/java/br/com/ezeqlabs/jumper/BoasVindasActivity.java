@@ -4,14 +4,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.multidex.MultiDex;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareButton;
+import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.common.SignInButton;
@@ -30,12 +36,16 @@ public class BoasVindasActivity extends BaseGameActivity{
     private SharedPreferences sharedPreferences;
     private Button jogar;
     private TextView moedas;
+    private Activity activity;
+    private Button compartilhar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boas_vindas);
 
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        MultiDex.install(this);
 
 
         inicializaElementos();
@@ -44,6 +54,7 @@ public class BoasVindasActivity extends BaseGameActivity{
         montaTextos();
         trataBotao(jogar);
         trataBotoesGooglePlay();
+        trataBotaoCompartilharFacebook();
         montaAnuncio();
         montaTutorial(jogar);
     }
@@ -65,6 +76,8 @@ public class BoasVindasActivity extends BaseGameActivity{
         this.moedas = (TextView) findViewById(R.id.boas_vindas_moedas);
         this.pontuacao = new Pontuacao(this, null, this.sharedPreferences, getApiClient());
         this.that = this;
+        this.activity = this;
+        this.compartilhar = (Button) findViewById(R.id.fb_share_button);
     }
 
     private void exibeMoedas(){
@@ -157,6 +170,25 @@ public class BoasVindasActivity extends BaseGameActivity{
                     Toast.makeText(that, getString(R.string.erro_play_deslogado, getString(R.string.placar)), Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+    }
+
+    private void trataBotaoCompartilharFacebook(){
+        compartilhar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShareDialog shareDialog = new ShareDialog(activity);
+                if (ShareDialog.canShow(ShareLinkContent.class)) {
+                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                            .setContentTitle(getString(R.string.share_melhor_title))
+                            .setQuote(getString(R.string.share_melhor_quote_description, sharedPreferences.getInt(Constantes.PREFS_MAXIMA_PONTUACAO, 0)))
+                            .setContentDescription(getString(R.string.share_melhor_quote_description, sharedPreferences.getInt(Constantes.PREFS_MAXIMA_PONTUACAO, 0)))
+                            .setContentUrl(Uri.parse(getString(R.string.share_melhor_link)))
+                            .build();
+
+                    shareDialog.show(linkContent);
+                }
             }
         });
     }

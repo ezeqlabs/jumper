@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Jumper</string>
+    <string name="facebook_app_id">1758693767719028</string>
 
     <string name="seu_recorde">Seu recorde atual: \n %1$d canos</string>
     <string name="botao_jogar">Jogar</string>
+    <string name="botao_compartilhar_recorde">COMPARTILHAR</string>
     <string name="canos">canos</string>
 
     <string name="tutorial_botao">Entendi!</string>
@@ -11,4 +13,8 @@
     <string name="erro_play_deslogado">Entre com a sua conta no Google Play Games para ver %1$s</string>
     <string name="conquistas">as conquistas</string>
     <string name="placar">o placar</string>
+
+    <string name="share_melhor_title">Meu recorde no Jumper</string>
+    <string name="share_melhor_quote_description">Meu recorde é de %1$d canos. Venha jogar e tente fazer melhor que eu.</string>
+    <string name="share_melhor_link">https://play.google.com/store/apps/details?id=br.com.ezeqlabs.jumper</string>
 </resources>
