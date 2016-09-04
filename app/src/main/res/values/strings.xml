@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Jumper</string>
     <string name="facebook_app_id">1758693767719028</string>
+    <string name="ad_boasvindas_id">ca-app-pub-8736689435854328/4280631196</string>
 
     <string name="seu_recorde">Seu recorde atual: \n %1$d canos</string>
     <string name="botao_jogar">Jogar</string>

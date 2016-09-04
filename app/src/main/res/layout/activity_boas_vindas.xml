@@ -126,6 +126,6 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-8736689435854328/4280631196"
+        ads:adUnitId="@string/ad_boasvindas_id"
         />
 </RelativeLayout>
