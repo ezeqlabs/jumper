@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "817387758436",
+    "firebase_url": "https://jumper-7f107.firebaseio.com",
+    "project_id": "jumper-7f107",
+    "storage_bucket": "jumper-7f107.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817387758436:android:255cf7c16ead322c",
+        "android_client_info": {
+          "package_name": "br.com.ezeqlabs.jumper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817387758436-4l9uvo3s04849bs0v7qq39s5g7f6fcaf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXLnfGoA7BWNbCDDxE-8s68hYjgzZiuXg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
