@@ -52,8 +52,8 @@ public class GameOverActivity extends Activity {
     }
 
     private void trataTextos(){
-        textViewResultado.setText("Você passou por "+ resultado +" canos");
-        textViewRecorde.setText("Recorde: "+ sharedPreferences.getInt(Constantes.PREFS_MAXIMA_PONTUACAO, 0) +" canos");
+        textViewResultado.setText(getString(R.string.gameover_texto_resultado, resultado));
+        textViewRecorde.setText(getString(R.string.gameover_texto_recorde, sharedPreferences.getInt(Constantes.PREFS_MAXIMA_PONTUACAO, 0)));
     }
 
     private void trataBotoes(){
@@ -72,9 +72,9 @@ public class GameOverActivity extends Activity {
                 ShareDialog shareDialog = new ShareDialog(activity);
                 if (ShareDialog.canShow(ShareLinkContent.class)) {
                     ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                            .setContentTitle("Novo resultado no Jumper")
-                            .setQuote("Acabei de passar por "+ resultado +" canos no Jumper. Venha jogar comigo!")
-                            .setContentDescription("Acabei de passar por "+ resultado +" canos no Jumper. Venha jogar comigo!")
+                            .setContentTitle(getString(R.string.share_resultado_title))
+                            .setQuote(getString(R.string.share_resultado_quote_description, resultado))
+                            .setContentDescription(getString(R.string.share_resultado_quote_description, resultado))
                             .setContentUrl(Uri.parse(getString(R.string.share_melhor_link)))
                             .build();
 

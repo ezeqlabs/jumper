@@ -18,4 +18,14 @@
     <string name="share_melhor_title">Meu recorde no Jumper</string>
     <string name="share_melhor_quote_description">Meu recorde é de %1$d canos. Venha jogar e tente fazer melhor que eu.</string>
     <string name="share_melhor_link">https://play.google.com/store/apps/details?id=br.com.ezeqlabs.jumper</string>
+
+    <string name="gameover_texto_perdeu">VOCÊ PERDEU</string>
+    <string name="gameover_texto_novamente">JOGAR NOVAMENTE</string>
+    <string name="gameover_texto_compartilhar">COMPARTILHAR RESULTADO</string>
+    <string name="gameover_texto_voltar">VOLTAR AO MENU</string>
+    <string name="gameover_texto_resultado">Você passou por %1$d canos</string>
+    <string name="gameover_texto_recorde">Recorde: %1$d canos</string>
+
+    <string name="share_resultado_title">Novo resultado no Jumper</string>
+    <string name="share_resultado_quote_description">Acabei de passar por %1$d canos no Jumper. Venha jogar comigo!</string>
 </resources>

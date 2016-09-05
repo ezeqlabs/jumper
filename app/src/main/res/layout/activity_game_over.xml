@@ -11,12 +11,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="#88b5fd">
+        android:background="@color/azulBgGameOver">
 
         <TextView
             style="@style/TextosGameOver"
-            android:text="VOCÊ PERDEU"
-            android:textColor="#CF0505"
+            android:text="@string/gameover_texto_perdeu"
+            android:textColor="@color/vermelhoGameOver"
             android:textSize="25sp"
             android:layout_marginBottom="20dp"
             />
@@ -39,7 +39,7 @@
         <Button
             android:id="@+id/bt_gameover_restart"
             style="@style/BotoesTelaInicial"
-            android:text="JOGAR NOVAMENTE"
+            android:text="@string/gameover_texto_novamente"
             android:textSize="18sp"
             android:paddingTop="8dp"
             android:paddingRight="41dp"
@@ -50,7 +50,7 @@
         <Button
             android:id="@+id/fb_share_gameover"
             style="@style/BotoesTelaInicial"
-            android:text="COMPARTILHAR RESULTADO"
+            android:text="@string/gameover_texto_compartilhar"
             android:textSize="18sp"
             android:paddingTop="8dp"
             android:paddingRight="8dp"
@@ -61,7 +61,7 @@
         <Button
             android:id="@+id/bt_gameover_menu"
             style="@style/BotoesTelaInicial"
-            android:text="VOLTAR AO MENU"
+            android:text="@string/gameover_texto_voltar"
             android:textSize="18sp"
             android:paddingTop="8dp"
             android:paddingRight="53dp"
