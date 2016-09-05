@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:padding="20dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#88b5fd">
+
+        <TextView
+            style="@style/TextosGameOver"
+            android:text="VOCÊ PERDEU"
+            android:textColor="#CF0505"
+            android:textSize="25sp"
+            android:layout_marginBottom="20dp"
+            />
+
+        <TextView
+            style="@style/TextosGameOver"
+            android:id="@+id/text_gameover_resultado"
+            android:textColor="@color/amareloBgBotao"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            style="@style/TextosGameOver"
+            android:id="@+id/text_gameover_recorde"
+            android:textColor="@color/amareloBgBotao"
+            android:textSize="20sp"
+            android:layout_marginBottom="50dp"
+            />
+
+        <Button
+            android:id="@+id/bt_gameover_restart"
+            style="@style/BotoesTelaInicial"
+            android:text="JOGAR NOVAMENTE"
+            android:textSize="18sp"
+            android:paddingTop="8dp"
+            android:paddingRight="41dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="41dp"
+            />
+
+        <Button
+            android:id="@+id/fb_share_gameover"
+            style="@style/BotoesTelaInicial"
+            android:text="COMPARTILHAR RESULTADO"
+            android:textSize="18sp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            />
+
+        <Button
+            android:id="@+id/bt_gameover_menu"
+            style="@style/BotoesTelaInicial"
+            android:text="VOLTAR AO MENU"
+            android:textSize="18sp"
+            android:paddingTop="8dp"
+            android:paddingRight="53dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="53dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

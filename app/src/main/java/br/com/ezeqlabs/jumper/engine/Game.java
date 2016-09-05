@@ -17,6 +17,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import br.com.ezeqlabs.jumper.BoasVindasActivity;
+import br.com.ezeqlabs.jumper.GameOverActivity;
 import br.com.ezeqlabs.jumper.R;
 import br.com.ezeqlabs.jumper.elementos.Canos;
 import br.com.ezeqlabs.jumper.elementos.GameOver;
@@ -39,6 +40,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
     private final SharedPreferences preferences;
     private InterstitialAd mInterstitialAd;
     private final GoogleApiClient googleApiClient;
+    private Intent gameOver;
 
     public Game(final Activity activity, SharedPreferences preferences, GoogleApiClient googleApiClient) {
         super(activity);
@@ -73,8 +75,10 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
 
             if(this.verificadorDeColisao.temColisao()){
                 this.som.toca(Som.COLISAO);
-                new GameOver(this.tela, this.pontuacao).desenhaNo(canvas);
                 cancela();
+
+                gameOver.putExtra("pontuacao", this.pontuacao.getPontos());
+                activity.startActivity(gameOver);
             }
 
             this.holder.unlockCanvasAndPost(canvas);
@@ -97,19 +101,12 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
         this.pontuacao = new Pontuacao(this.activity, this.som, this.preferences, this.googleApiClient);
         this.canos = new Canos(this.activity, this.tela, this.pontuacao, this.passaro);
         this.verificadorDeColisao = new VerificadorDeColisao(this.passaro, this.canos);
+        this.gameOver = new Intent(activity, GameOverActivity.class);
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if(this.estaRodando){
-            this.passaro.pula();
-        }else{
-            if (mInterstitialAd.isLoaded()) {
-                mInterstitialAd.show();
-            }else{
-                reiniciaJogo();
-            }
-        }
+        this.passaro.pula();
         return false;
     }
 
@@ -127,7 +124,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
-                reiniciaJogo();
+                activity.startActivity(gameOver);
             }
         });
         requestNewInterstitial();
