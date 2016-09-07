@@ -5,12 +5,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.multidex.MultiDex;
+import android.transition.AutoTransition;
+import android.transition.Scene;
+import android.transition.Transition;
+import android.transition.TransitionManager;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,11 +45,25 @@ public class BoasVindasActivity extends BaseGameActivity{
     private TextView moedas;
     private Activity activity;
     private Button compartilhar;
+    private Scene scene;
+    private Transition transition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_boas_vindas);
+        if(Build.VERSION.SDK_INT >= 21){
+            setContentView(R.layout.activity_boas_vindas_init);
+            RelativeLayout baseLayout = (RelativeLayout) findViewById(R.id.menu_layout);
+
+            scene = Scene.getSceneForLayout(baseLayout, R.layout.activity_boas_vindas, this);
+
+            transition = new AutoTransition();
+            transition.setDuration(1000);
+            transition.setInterpolator(new AccelerateDecelerateInterpolator());
+            TransitionManager.go(scene, transition);
+        }else{
+            setContentView(R.layout.activity_boas_vindas);
+        }
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         MultiDex.install(this);
