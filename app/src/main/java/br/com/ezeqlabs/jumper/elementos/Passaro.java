@@ -61,4 +61,8 @@ public class Passaro {
     public int getTamanhoPassaro(){
         return 2 * RAIO;
     }
+
+    public void limpaPassaro(){
+        this.passaro.recycle();
+    }
 }

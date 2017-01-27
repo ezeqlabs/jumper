@@ -75,4 +75,11 @@ public class Canos {
         }
         return false;
     }
+
+    public void limpaCanos(){
+        for(Cano cano : this.canos){
+            cano.eliminaInutilizados();
+        }
+        this.canos.clear();
+    }
 }

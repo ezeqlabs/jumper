@@ -76,9 +76,11 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
             if(this.verificadorDeColisao.temColisao()){
                 this.som.toca(Som.COLISAO);
                 cancela();
+                limpaElementos();
 
                 gameOver.putExtra("pontuacao", this.pontuacao.getPontos());
                 activity.startActivity(gameOver);
+                activity.finish();
             }
 
             this.holder.unlockCanvasAndPost(canvas);
@@ -110,12 +112,11 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
         return false;
     }
 
-    private void reiniciaJogo(){
+    private void limpaElementos(){
         this.som.eliminaSom();
         this.background.recycle();
-        Intent boasVindas = new Intent(this.activity, BoasVindasActivity.class);
-        this.activity.startActivity(boasVindas);
-        this.activity.finish();
+        this.canos.limpaCanos();
+        this.passaro.limpaPassaro();
     }
 
     private void trataPublicidade(){
